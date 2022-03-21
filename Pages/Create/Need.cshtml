@@ -1,0 +1,53 @@
+﻿@page
+@model enterprisedevproj.Pages.Create.NeedModel
+@{
+    ViewData["Title"] = "Create Need";
+}
+<form method="post">
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+@*    <div>
+        <label class="col-sm-3 col-form-label">Need Id:</label>
+        <input asp-for="HereNeed.Id" />
+        <span asp-validation-for="HereNeed.Id" class="text-danger"></span>
+    </div>*@
+
+    <div>
+        <label class="col-sm-3 col-form-label">Medical History (Nil if none):</label>
+        <input asp-for="HereNeed.MedicalHistory" />
+        <span asp-validation-for="HereNeed.MedicalHistory" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-3 col-form-label">Medications (Nil if none):</label>
+        <input asp-for="HereNeed.Medications" />
+        <span asp-validation-for="HereNeed.Medications" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-3 col-form-label">Conditions (Nil if none):</label>
+        <input asp-for="HereNeed.Conditions" />
+        <span asp-validation-for="HereNeed.Conditions" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-3 col-form-label">Vegetarian:</label>
+        @Html.RadioButton("HereNeed.Vegetarian", 1) <span>Yes</span>
+        @Html.RadioButton("HereNeed.Vegetarian", 0) <span>No</span>
+        <span asp-validation-for="HereNeed.Vegetarian" class="text-danger"></span>
+
+    </div>
+
+    <div>
+        <label class="col-sm-3 col-form-label">Food Allergies (Nil if none):</label>
+        <input asp-for="HereNeed.FoodAllergies" />
+        <span asp-validation-for="HereNeed.FoodAllergies" class="text-danger"></span>
+    </div>
+
+    <div>
+        <input id="create" type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

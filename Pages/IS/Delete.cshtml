@@ -1,0 +1,154 @@
+﻿@page "{id?}"
+@model enterprisedevproj.Pages.IS.DeleteModel
+@{
+    ViewData["Title"] = "IT Staff: Confirm Delete";
+}
+
+@{
+    if (Model.DetailIndex == "A")
+    {
+
+
+        <table class="center">
+            <tr>
+                <td>
+                    <h2>Delete alert?</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>A notification will be sent to the alerter <br />An alert will not be deleted, but instead will have the phrase "Resolved" suffixed to the ID</p>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-secondary" asp-page="/IS/Main">Cancel</a></td>
+                <td><a class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@Model.HereAlert.Id">Details</a></td>
+                <td>
+                    <form method="post">
+                        @*
+                            <input type="submit" id="delete" value="Delete" class="btn btn-danger" />*@
+                        <button class="btn btn-danger">Delete</button>
+                        <input type="hidden" name="id" value="@Model.HereAlert.Id" /> @*for some reason, DetailIndex doesn't carry over to OnPost'*@
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    }
+    else if (Model.DetailIndex == "R")
+    {
+        
+        
+        <table class="center">
+            <tr>
+                <td>
+                    <h2>Delete review?</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>A notification will be sent to the reviewer</p>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-secondary" asp-page="/IS/Main">Cancel</a></td>
+                <td><a class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@Model.HereReview.Id">Details</a></td>
+                <td>
+                    <form method="post">
+                        @*
+                            <input type="submit" id="delete" value="Delete" class="btn btn-danger" />*@
+                        <button class="btn btn-danger">Delete</button>
+                        <input type="hidden" name="id" value="@Model.HereReview.Id" /> @*for some reason, DetailIndex doesn't carry over to OnPost'*@
+                    </form>
+                </td>
+            </tr>
+        </table>
+    }
+    else if (Model.DetailIndex == "E")
+    {
+        
+        
+        <table class="center">
+            <tr>
+                <td>
+                    <h2>Delete event?</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>A notification will be sent to the event manager and any <br />participants that may have signed up for it</p>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-secondary" asp-page="/IS/Main">Cancel</a></td>
+                <td><a class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@Model.HereEvent.Id">Details</a></td>
+                <td>
+                    <form method="post">
+                        @*
+                            <input type="submit" id="delete" value="Delete" class="btn btn-danger" />*@
+                        <button class="btn btn-danger">Delete</button>
+                        <input type="hidden" name="id" value="@Model.HereEvent.Id" /> @*for some reason, DetailIndex doesn't carry over to OnPost'*@
+                    </form>
+                </td>
+            </tr>
+        </table>
+    }
+    else if (Model.DetailIndex == "I")
+    {
+        
+        
+        <table class="center">
+            <tr>
+                <td>
+                    <h2>Delete interest?</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>A notification will be sent to the creator</p>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-secondary" asp-page="/IS/Main">Cancel</a></td>
+                <td><a class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@Model.HereInterest.Id">Details</a></td>
+                <td>
+                    <form method="post">
+                        @*
+                            <input type="submit" id="delete" value="Delete" class="btn btn-danger" />*@
+                        <button class="btn btn-danger">Delete</button>
+                        <input type="hidden" name="id" value="@Model.HereInterest.Id" /> @*for some reason, DetailIndex doesn't carry over to OnPost'*@
+                    </form>
+                </td>
+            </tr>
+        </table>
+    }
+    else if (Model.DetailIndex == "N")
+    {
+        
+        
+        <table class="center">
+            <tr>
+                <td>
+                    <h2>Delete need?</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>A notification will be sent to suppliers and beneficiaries</p>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-secondary" asp-page="/IS/Main">Cancel</a></td>
+                <td><a class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@Model.HereNeed.Id">Details</a></td>
+                <td>
+                    <form method="post">
+                        @*
+                            <input type="submit" id="delete" value="Delete" class="btn btn-danger" />*@
+                        <button class="btn btn-danger">Delete</button>
+                        <input type="hidden" name="id" value="@Model.HereNeed.Id" /> @*for some reason, DetailIndex doesn't carry over to OnPost'*@
+                    </form>
+                </td>
+            </tr>
+        </table>
+    }
+}

@@ -1,0 +1,35 @@
+﻿@page
+@model enterprisedevproj.Pages.Errors.SignUpErrorModel
+@{
+    switch (Model.ConfirmIndex)
+    {
+        case "exist":
+            ViewData["Title"] = "Signed up already";
+            break;
+        case "failed":
+            ViewData["Title"] = "Sign up failed";
+            break;
+        default:
+            ViewData["Title"] = "Error.";
+            break;
+    }
+}
+@section metatags {
+    <meta http-equiv="refresh" content="5; URL=/Events/Main">
+}
+@{
+    switch (Model.ConfirmIndex)
+    {
+        case "exist":
+            <h1>You have already signed up for this event</h1>
+            <p>You will be redirected to the event page in 5 seconds.</p>
+            break;
+        case "failed":
+            <h1>Sign up failed</h1>
+            <p>You will be redirect to the event page in 5 seconds</p>
+            break;
+        default:
+            break;
+
+    }
+}

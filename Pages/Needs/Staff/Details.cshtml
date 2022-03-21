@@ -1,0 +1,60 @@
+﻿@page
+@model enterprisedevproj.Pages.Needs.Staff.DetailsModel
+@{
+    ViewData["Title"] = "Needs detail";
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2 resurface-orange-background">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Dashboard">Logged in as Staff(Needs)</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h1>Need Details</h1>
+
+<div>
+        <label class="col-sm-2 col-form-label">ID:</label>
+        <label>@Model.HereNeed.Id</label>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Beneficiary ID:</label>
+        <label>@Model.HereNeed.BeneficiaryId</label>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Assistant ID:</label>
+        <label>@Model.HereNeed.AssistantId</label>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Medical History:</label>
+        <label>@Model.HereNeed.MedicalHistory</label>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Medications:</label>
+        <label>@Model.HereNeed.Medications</label>
+
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Conditions:</label>
+        <label>@Model.HereNeed.Conditions</label>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Vegetarian:</label>
+        <label>@Model.HereNeed.Vegetarian</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Food Allergies:</label>
+        <label>@Model.HereNeed.FoodAllergies</label>
+    </div>
+    <div class="col-sm-10">
+        <a class="btn btn-info" asp-page="/Needs/Staff/Main">Back</a>
+    </div>

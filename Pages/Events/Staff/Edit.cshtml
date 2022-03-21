@@ -1,0 +1,58 @@
+﻿@page
+@model enterprisedevproj.Pages.Events.Staff.EditModel
+@{      ViewData["Title"] = "Edit Event";
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2 resurface-orange-background">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Dashboard">Logged in as Event Manager</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h1>Editing Event</h1>
+
+<form method="post">
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+    <div>
+        <label class="col-sm-2 col-form-label">Event Id:</label>
+        <input asp-for="HereEvent.Id" disabled />
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Name:</label>
+        <input asp-for="HereEvent.Name" />
+        <span asp-validation-for="HereEvent.Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Description:</label>
+        <input asp-for="HereEvent.Description" />
+        <span asp-validation-for="HereEvent.Description" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Start Time:</label>
+        <input asp-for="HereEvent.StartTime" />
+        <span asp-validation-for="HereEvent.StartTime" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">End Time:</label>
+        <input asp-for="HereEvent.EndTime" />
+        <span asp-validation-for="HereEvent.EndTime" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Location:</label>
+        <input asp-for="HereEvent.Location" />
+        <span asp-validation-for="HereEvent.Location" class="text-danger"></span>
+    </div>
+
+    <div>
+        <input id="create" type="submit" value="Update" class="btn btn-primary" />
+    </div>
+</form>

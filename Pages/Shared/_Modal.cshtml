@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.AspNetCore.Http;
+@model string
+
+@using (Html.BeginForm())
+{
+    @*@await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Delete" })*@
+    <div class="modal-header">
+        Confirm
+    </div>
+    <div class="modal-body form-horizontal">
+        Are you sure you want to @Model?
+    </div>
+    <div class="modal-footer">
+        put some buttons here idk, kinda gave up using modal a while ago
+    </div>
+    @*@await Html.PartialAsync("_ModalFooter", new ModalFooter { SubmitButtonText = "Delete" })*@
+}

@@ -1,0 +1,75 @@
+﻿@page "{id?}"
+@model enterprisedevproj.Pages.Create.ConfirmedModel
+@{
+    switch (Model.DetailIndex)
+    {
+        case "a":
+            ViewData["Title"] = "Alert sent!";
+            break;
+        case "r":
+            ViewData["Title"] = "Review uploaded!";
+            break;
+        case "e":
+            ViewData["Title"] = "Event uploaded!";
+            break;
+        case "i":
+            ViewData["Title"] = "Interest uploaded!";
+            break;
+        case "n":
+            ViewData["Title"] = "Needs uploaded!";
+            break;
+        case "su":
+            ViewData["Title"] = "Sign up success!";
+            break;
+        default:
+            ViewData["Title"] = "No ID detected.";
+            break;
+    }
+
+}
+@section metatags {
+    @switch (Model.DetailIndex)
+    {
+        case "i":
+            <meta http-equiv="refresh" content="3; URL=/Discover" />
+            break;
+        case "e":
+            <meta http-equiv="refresh" content="3; URL=/Events/Staff/Main" />
+            break;
+        case "su":
+            <meta http-equiv="refresh" content="3; URL=/Events/Main" />
+            break;
+        default:
+            <meta http-equiv="refresh" content="3; URL=/" />
+            break;
+    };
+}
+
+@{
+    switch (Model.DetailIndex)
+    {
+        case "a":
+            <h1>Alert successfully created!</h1>
+            <p>Our IT staff will look at your alert, while we redirect you back to home page in 5 seconds</p>
+            break;
+        case "r":
+            break;
+        case "e":
+            <h1>Event successfully created!</h1>
+            break;
+        case "i":
+            <h1>Interest successfully created!</h1>
+            <p>Our IT staff and admins will look at your interest that you have created, while we redirect you back to discover page in 5 seconds</p>
+            break;
+        case "n":
+            <h1>Need successfully created!</h1>
+            <p>You can edit it anytime if there is any changes you want to do</p>
+            break;
+        case "su":
+            <h1>Sign up successfully!</h1>
+            break;
+        default:
+            break;
+
+    }
+}

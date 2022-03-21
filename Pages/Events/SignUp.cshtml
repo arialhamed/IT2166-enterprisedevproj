@@ -1,0 +1,29 @@
+﻿@page
+@inject UserManager<ApplicationUser> _userManager
+@model enterprisedevproj.Pages.Events.SignUpModel
+@{
+    ViewData["Title"] = "Sign up";
+}
+
+<table class="center">
+    <tr>
+        <td>
+            <h2>Confirm Signup?</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>A notification will be sent to your email</p>
+        </td>
+    </tr>
+    <tr>
+        <td><a class="btn btn-secondary" asp-page="/Events/Main">Cancel</a></td>
+        <td><a class="btn btn-info" asp-page="/Events/Details" asp-route-id="@Model.HereEvent.Id">Details</a></td>
+        <td>
+            <form method="post">
+                <button class="btn btn-success" type="submit">Confirm</button>
+                <input type="hidden" name="id" value="@Model.HereEvent.Id" />
+            </form>
+        </td>
+    </tr>
+</table>

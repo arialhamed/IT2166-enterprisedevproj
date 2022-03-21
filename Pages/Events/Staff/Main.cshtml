@@ -1,0 +1,62 @@
+﻿@page
+@model enterprisedevproj.Pages.Events.Staff.MainModel
+@{
+    ViewData["Title"] = "Event Manager";
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2 resurface-orange-background">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Dashboard">Logged in as Event Manager</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div>
+    <h4>List of Events</h4>
+    <p><a asp-page="/Create/Event">Click here</a> to add event</p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.allevents[0].Id)</th>
+            <th>@Html.DisplayNameFor(model => model.allevents[0].Name)</th>
+            <th>@Html.DisplayNameFor(model => model.allevents[0].StartTime)</th>
+            <th>@Html.DisplayNameFor(model => model.allevents[0].EndTime)</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ if (Model.allevents != null)
+            {
+
+                @foreach (var item in Model.allevents)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.StartTime.ToString()</td>
+                        <td>@item.EndTime.ToString()</td>
+                        <td>
+                            <a asp-page="/Events/Staff/AllParticipants" class="btn btn-info" asp-route-id="@item.Id">Participants</a>
+                        </td>
+                        <td>
+                            <a asp-page="/Events/Staff/Details" class="btn btn-info" asp-route-id="@item.Id">View</a>
+                        </td>
+                        <td>
+                            <a asp-page="/Events/Staff/Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-page="/Events/Staff/Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

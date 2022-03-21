@@ -1,0 +1,55 @@
+﻿@page
+@model enterprisedevproj.Pages.Needs.MainModel
+@inject UserManager<ApplicationUser> _userManager
+@{      ViewData["Title"] = "Personal Needs";
+}
+<h1>Your Personal Needs</h1>
+
+@try
+{
+    <div>
+       <h5>@Model.HereNeed.Id</h5>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Medical Needs</th>
+                <th>Dietary Needs</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    <ul>
+                        <li>History: @Model.HereNeed.MedicalHistory</li>
+                        <li>Medications: @Model.HereNeed.Medications</li>
+                        <li>Conditions: @Model.HereNeed.Conditions</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @if (@Model.HereNeed.Vegetarian == 1)
+                        {
+                            <li>Vegetarian: Yes</li>
+                        }
+                        else
+                        {
+                            <li>Vegetarian: No</li>
+                        }
+                        <li>Food Allergies: @Model.HereNeed.FoodAllergies</li>
+                    </ul>
+                </td>
+                <td>
+                    <a asp-page="/Needs/UpdateNeed" asp-route-id="@Model.HereNeed.Id">Update</a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+}
+catch
+            {
+                <p><a asp-page="/Create/Need">Click here</a> to add your needs</p>
+            }

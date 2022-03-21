@@ -1,0 +1,29 @@
+﻿@page
+@model enterprisedevproj.Pages.Events.MainModel
+@{            ViewData["Title"] = "All Events";
+}
+<h1>All Events</h1>
+@{
+    if (Model.allevents != null)
+    {
+        @foreach (var item in Model.allevents)
+        {
+            <div class="row">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td><b>Name: @item.Name</b></td>
+                            <td>Description: @item.Description</td>
+                            <td><a asp-page="/Events/Details" asp-route-id="@item.Id">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr class="bg-dark" />
+        }
+    }
+    else
+    {
+        <h3>There are currently no events</h3>
+    }
+}

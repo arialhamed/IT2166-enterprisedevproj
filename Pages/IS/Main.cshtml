@@ -1,0 +1,495 @@
+﻿@page "{id?}"
+@model enterprisedevproj.Pages.IS.MainModel
+@{
+}
+@{
+    ViewData["Title"] = "IT Staff: Main page";
+}
+@section scripts {
+    <script type="text/javascript">
+        ISMainSortTable(0, "desc") //default date descending
+    </script>
+}
+
+@*For IT Staff, session variables will decide when this appear*@
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2 resurface-orange-background">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Account/Manage" asp-area="Identity">Logged in as IT Staff</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/IS/Main" asp-route-id="alerts">
+                        @if (Model.AllAlerts != null)
+                        {
+                            <u>ALERTS</u>
+                        }
+                        else
+                        {
+                            <span>ALERTS</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/IS/Main" asp-route-id="users">
+                        @if (Model.AllUsers != null)
+                        {
+                            <u>USERS</u>
+                        }
+                        else
+                        {
+                            <span>USERS</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/IS/Main" asp-route-id="reviews">
+                        @if (Model.AllReviews != null)
+                        {
+                            <u>REVIEWS</u>
+                        }
+                        else
+                        {
+                            <span>REVIEWS</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/IS/Main" asp-route-id="events">
+                        @if (Model.AllEvents != null)
+                        {
+                            <u>EVENTS</u>
+                        }
+                        else
+                        {
+                            <span>EVENTS</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/IS/Main" asp-route-id="interests">
+                        @if (Model.AllInterests != null)
+                        {
+                            <u>INTERESTS</u>
+                        }
+                        else
+                        {
+                            <span>INTERESTS</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/IS/Main" asp-route-id="needs">
+                        @if (Model.AllNeeds != null)
+                        {
+                            <u>NEEDS</u>
+                        }
+                        else
+                        {
+                            <span>NEEDS</span>
+                        }
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+@{
+    // Model.AllValue will change according to asp-route-id
+    if (Model.AllAlerts != null)
+    {
+        if (Model.AllAlerts.Count >= 1)
+        {
+            <table class="table table-borderless">
+                <tr>
+                    <td><small>Click on the table header to sort the data. Default sorted by date.</small></td>
+                    <td></td>
+                    <td><input type="search" id="ISMainSearchBox" class="form-control" onkeyup="ISMainSearchTable()" placeholder="Search" /></td>
+                </tr>
+            </table>
+            <h4 class="text-center">Active</h4>
+            <table class="container table table-striped table-bordered table-hover" id="ISMainTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(0)">Date modified</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(1)">Alert ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(2)">Target ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(3)">Alerter User ID</th>
+                        <th class="do-not-select" scope="col">Description (Brief)</th>
+                        <th class="do-not-select" scope="col" colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ISMainContent">
+
+                    @foreach (var item in Model.AllActiveAlerts)
+                    {
+                        <tr>
+                            <td>@item.AlertTime</td>
+                            <td scope="row">@item.Id</td>
+                            <td>@item.TargetId</td>
+                            <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.AlerterId">@item.AlerterId</a></td>
+                            <td title="@item.Description">
+                                @if (item.Description.Length > 20)
+                                {
+                                    @item.Description.Substring(0, 20);<span>...</span>
+                                }
+                                else
+                                {
+                                    @item.Description;
+                                }
+
+                            </td>
+                            <td><a target="_blank" class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@item.Id">View Details</a></td>
+                            <td><a class="btn btn-warning" asp-page="/IS/Delete" asp-route-id="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h4 class="text-center">Resolved</h4>
+            <table class="container table table-striped table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(0)">Date modified</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(1)">Alert ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(2)">Target ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(3)">Alerter User ID</th>
+                        <th class="do-not-select" scope="col">Description (Brief)</th>
+                        <th class="do-not-select" scope="col" colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ISMainContent">
+                    
+                    @foreach (var item in Model.AllResolvedAlerts)
+                    {
+                        <tr>
+                            <td>@item.AlertTime</td>
+                            <td scope="row">@item.Id</td>
+                            <td>@item.TargetId</td>
+                            <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.AlerterId">@item.AlerterId</a></td>
+                            <td title="@item.Description">
+                                @if (item.Description.Length > 20)
+                                {
+                                    @item.Description.Substring(0, 20);<span>...</span>
+                                }
+                                else
+                                {
+                                    @item.Description;
+                                }
+
+                            </td>
+                            <td><a target="_blank" class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@item.Id">View Details</a></td>
+                            <td><a class="btn btn-warning" asp-page="/IS/Delete" asp-route-id="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+        else
+        {
+            <h1>No alerts right now...</h1>
+            <p>Check the other databases with the backend navbar</p>
+        }
+    }
+    else if (Model.AllUsers != null)
+    {
+        if (Model.AllUsers.Count >= 1)
+        {
+            <table class="table table-borderless">
+                <tr>
+                    <td><small>Click on the table header to sort the data. Default sorted by date.</small></td>
+                    <td></td>
+                    <td><input type="search" id="ISMainSearchBox" class="form-control" onkeyup="ISMainSearchTable()" placeholder="Search" /></td>
+                </tr>
+            </table>
+            <table class="container table table-striped table-bordered table-hover" id="ISMainTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(0)">Date Modified</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(1)">User ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(2)">Full Name</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(3)">Email</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(4)">Email Confirmed</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(5)">2FA Enabled</th>
+                        <th class="do-not-select" scope="col">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody id="ISMainContent">
+                    @foreach (var item in Model.AllUsers)
+                    {
+                        <tr>
+                            <td>@item.accountCreatedTime</td>
+                            <td scope="row"><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.Id">@item.Id</a></td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@item.Email</td>
+                            <td>@item.EmailConfirmed</td>
+                            <td>@item.TwoFactorEnabled</td>
+                            @*<td><a class="btn btn-success" asp-page="/IS/InterestApproval" asp-route-id="@item.Id">Approve</a></td>
+                            *@
+                            <td><a target="_blank" class="btn btn-info" asp-page="/IS/ViewUser" asp-route-id="@item.Id">More details</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No users right now...</h1>
+            <p>If you see this page, count it as a fatal error on programmer's part</p>
+        }
+    }
+    else if (Model.AllReviews != null)
+    {
+        if (Model.AllReviews.Count >= 1)
+        {
+            <table class="table table-borderless">
+                <tr>
+                    <td><small>Click on the table header to sort the data. Default sorted by date.</small></td>
+                    <td></td>
+                    <td><input type="search" id="ISMainSearchBox" class="form-control" onkeyup="ISMainSearchTable()" placeholder="Search" /></td>
+                </tr>
+            </table>
+            <table class="container table table-striped table-bordered table-hover" id="ISMainTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(0)">Date Modified</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(1)">Review ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(2)">Reviewer ID</th>
+                        <th class="do-not-select" scope="col">Review Description</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(4)">Rating</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(5)">Helpfulness Rating</th>
+                        <th class="do-not-select" scope="col" colspan="2">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody id="ISMainContent">
+                    @foreach (var item in Model.AllReviews)
+                    {
+                        <tr>
+                            <td>@item.ReviewDate</td>
+                            <td scope="row">@item.Id</td>
+                            <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.ReviewerId">@item.ReviewerId</a></td>
+
+                            @if (item.Description.Length > 20)
+                            {
+                                <td title="@item.Description">@item.Description.Substring(0, 20)...</td>
+                            }
+                            else
+                            {
+                                <td>@item.Description</td>
+                            }
+
+                            <td>@item.Rating</td>
+                            <td>@item.HelpfulRate</td>
+                            <td><a target="_blank" class="btn btn-warning" asp-page="/IS/Edit" asp-route-id="@item.Id">Edit</a></td>
+                            <td><a class="btn btn-danger" asp-page="/IS/Delete" asp-route-id="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No reviews right now...</h1>
+            <p>Check the other databases with the backend navbar</p>
+        }
+    }
+    else if (Model.AllEvents != null)
+    {
+        if (Model.AllEvents.Count >= 1)
+        {
+            <table class="table table-borderless">
+                <tr>
+                    <td><small>Click on the table header to sort the data. Default sorted by date.</small></td>
+                    <td></td>
+                    <td><input type="search" id="ISMainSearchBox" class="form-control" onkeyup="ISMainSearchTable()" placeholder="Search" /></td>
+                </tr>
+            </table>
+            <table class="container table table-striped table-bordered table-hover" id="ISMainTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(0)">Start Date</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(1)">End Date</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(2)">Event ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(3)">Event Name</th>
+                        <th class="do-not-select" scope="col">Description</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(5)">Creator ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(6)">Location</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(7)">Sponsors</th>
+                        <th class="do-not-select" scope="col" colspan="3">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody id="ISMainContent">
+                    @foreach (var item in Model.AllEvents)
+                    {
+                        <tr>
+                            <td>@item.StartTime</td>
+                            <td>@item.EndTime</td>
+                            <td scope="row">@item.Id</td>
+                            <td>@item.Name</td>
+
+                            @if (item.Description.Length > 20)
+                            {
+                                <td title="@item.Description">@item.Description.Substring(0, 20)...</td>
+                            }
+                            else
+                            {
+                                <td>@item.Description</td>
+                            }
+
+                            <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.CreatorId">@item.CreatorId</a></td>
+                            <td>@item.Location</td>
+                            <td>@item.Sponsors</td>
+                            <td><a target="_blank" class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@item.Id">More details</a></td>
+                            <td><a target="_blank" class="btn btn-info" asp-page="/" asp-route-id="@item.Id">View page</a></td>
+                            <td><a class="btn btn-danger" asp-page="/IS/Delete" asp-route-id="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No events right now...</h1>
+            <p>Check the other databases with the backend navbar</p>
+        }
+    }
+    else if (Model.AllInterests != null)
+    {
+        if (Model.AllInterests.Count >= 1)
+        {
+            <table class="table table-borderless">
+                <tr>
+                    <td><small>Click on the table header to sort the data. Default sorted by date.</small></td>
+                    <td></td>
+                    <td><input type="search" id="ISMainSearchBox" class="form-control" onkeyup="ISMainSearchTable()" placeholder="Search" /></td>
+                </tr>
+            </table>
+            <table class="container table table-striped table-bordered table-hover" id="ISMainTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(0)">Date Modified</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(1)">Interest ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(2)">Interest Name</th>
+                        <th class="do-not-select" scope="col">Interest Description</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(4)">Rating by users</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(5)">Likes</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(6)">Views</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(7)">Creator ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(8)">Approval flag</th>
+                        <th class="do-not-select" scope="col" colspan="3">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody id="ISMainContent">
+                    @foreach (var item in Model.AllInterests)
+                    {
+                        <tr>
+                            <td>@item.DateModified</td>
+                            <td scope="row">@item.Id</td>
+                            <td>@item.Name</td>
+
+                            @if (item.Description.Length > 20)
+                            {
+                                <td title="@item.Description">@item.Description.Substring(0, 20)...</td>
+                            }
+                            else
+                            {
+                                <td>@item.Description</td>
+                            }
+
+                            <td>@item.Rating</td>
+                            <td>@item.Likes</td>
+                            <td>@item.Views</td>
+                            <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.CreatorId">@item.CreatorId</a></td>
+                            <td>@item.Approved</td>
+                            <td><a target="_blank" class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@item.Id">More details</a></td>
+                            @if (item.Approved == 1)
+                            {
+                                <td><a target="_blank" class="btn btn-info" asp-page="/Interest" asp-route-id="@item.Id">View page</a></td>
+                                <td><a class="btn btn-warning" asp-page="/IS/InterestApproval" asp-route-id="@item.Id">Revoke approval</a></td>
+                            }
+                            else
+                            {
+                                @*    <td><a class="btn btn-info" asp-page="/Interest" asp-route-id="@item.Id" disabled="disabled">View page</a></td>
+                                *@
+                                <td></td>
+                                <td><a class="btn btn-success" asp-page="/IS/InterestApproval" asp-route-id="@item.Id">Approve</a></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No interests right now...</h1>
+            <p>Check the other databases with the backend navbar</p>
+        }
+    }
+    else if (Model.AllNeeds != null)
+    {
+        if (Model.AllNeeds.Count >= 1)
+        {
+            <table class="table table-borderless">
+                <tr>
+                    <td><small>Click on the table header to sort the data. Default sorted by date.</small></td>
+                    <td></td>
+                    <td><input type="search" id="ISMainSearchBox" class="form-control" onkeyup="ISMainSearchTable()" placeholder="Search" /></td>
+                </tr>
+            </table>
+            <table class="container table table-striped table-bordered table-hover" id="ISMainTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(0)">Date Modified</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(1)">Needs ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(2)">Beneficiary ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(3)">Assistant ID</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(4)">Medications</th>
+                        <th class="do-not-select" scope="col" onclick="ISMainSortTable(5)">Vegetarian</th>
+                        <th class="do-not-select" scope="col" colspan="2">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody id="ISMainContent">
+                    @foreach (var item in Model.AllNeeds)
+                    {
+                        <tr>
+                            <td>date</td>
+                            <td scope="row">@item.Id</td>
+                            <td>@item.BeneficiaryId</td>
+                            <td>@item.AssistantId</td>
+                            <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.BeneficiaryId">@item.BeneficiaryId</a></td>
+                            <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@item.AssistantId">@item.AssistantId</a></td>
+                            <td>@item.Medications</td>
+                            <td>@item.Vegetarian</td>
+                            <td><a target="_blank" class="btn btn-info" asp-page="/IS/Detail" asp-route-id="@item.Id">More details</a></td>
+                            <td><a class="btn btn-danger" asp-page="/IS/Delete" asp-route-id="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No needs right now...</h1>
+            <p>Check the other databases with the backend navbar</p>
+        }
+    }
+    else
+    {
+        <h1>Something went wrong with this page</h1>
+        <p>Get the devs to fix it</p>
+    }
+}
+

@@ -1,0 +1,53 @@
+﻿@page
+@model enterprisedevproj.Pages.Events.Staff.DetailsModel
+@{
+    ViewData["Title"] = "Event Details";
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2 resurface-orange-background">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Dashboard">Logged in as Event Manager</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h1>Event Details</h1>
+
+<div>
+    <label class="col-sm-2 col-form-label">ID:</label>
+    <label>@Model.HereEvent.Id</label>
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Name:</label>
+    <label>@Model.HereEvent.Name</label>
+</div>
+
+<div>
+    <label class="col-sm-2 col-form-label">Description:</label>
+    <label>@Model.HereEvent.Description</label>
+
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Start Time:</label>
+    <label>@Model.HereEvent.StartTime</label>
+</div>
+
+<div>
+    <label class="col-sm-2 col-form-label">End Time:</label>
+    <label>@Model.HereEvent.EndTime</label>
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Location:</label>
+    <label>@Model.HereEvent.Location</label>
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Sponsors:</label>
+    <label>@Model.HereEvent.Sponsors</label>
+</div>
+<div class="col-sm-10">
+    <a class="btn btn-info" asp-page="/Events/Staff/Main">Back</a>
+    <a class="btn btn-danger" asp-page="/Events/Staff/Delete" asp-route-id="@Model.HereEvent.Id">Delete</a>
+</div>

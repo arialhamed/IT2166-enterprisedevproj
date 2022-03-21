@@ -1,0 +1,43 @@
+﻿@page
+@model enterprisedevproj.Pages.Events.Staff.AllParticipantsModel
+@{
+    ViewData["Title"] = "All Participants";
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2 resurface-orange-background">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Dashboard">Logged in as Event Manager</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.allparticipants[0].Id)</th>
+            <th>@Html.DisplayNameFor(model => model.allparticipants[0].Email)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ if (Model.allparticipants != null)
+            {
+
+                @foreach (var item in Model.allparticipants)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Email</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-page="/Events/Staff/Main" class="btn btn-secondary">Back</a>
+</div>

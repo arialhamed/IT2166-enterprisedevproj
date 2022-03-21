@@ -1,0 +1,24 @@
+﻿@page
+@model enterprisedevproj.Pages.SearchModel
+@{
+    ViewData["Title"] = "Search";
+    @inject SignInManager<ApplicationUser> _signInManager
+    @inject UserManager<ApplicationUser> _userManager
+}
+<table class="container table table-hover table-light">
+@*    @foreach (var item in Model.HereEvent)
+    {
+
+    }
+    @foreach (var item in Model.HereInterest)
+    {
+
+    }
+    @if(_userManager.GetUserName(User).Contains("re"))
+    @foreach (var item in Model.HereNeeds)
+    {
+
+    }*@
+</table>
+<h3>Search will be coming soon!</h3>
+<p>Once we get it working, you will be able to search with ease 100%</p>

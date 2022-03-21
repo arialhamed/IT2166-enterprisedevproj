@@ -1,0 +1,49 @@
+﻿@page
+@model enterprisedevproj.Pages.Needs.Staff.MainModel
+@{
+    ViewData["Title"] = "All user needs";
+}
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2 resurface-orange-background">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Dashboard">Logged in as Staff(Needs)</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div>
+    <h5>List of all needs</h5>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.allneeds[0].Id)</th>
+            <th>Beneficiary ID</th>
+            <th>Assistant ID</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ if (Model.allneeds != null)
+            {
+
+                @foreach (var item in Model.allneeds)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.BeneficiaryId</td>
+                        <td>@item.AssistantId</td>
+                        <td>
+                            <a asp-page="/Needs/Staff/Details" asp-route-id="@item.Id">View</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

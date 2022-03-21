@@ -1,0 +1,35 @@
+﻿@page "{id?}"
+@model enterprisedevproj.Pages.Create.AlertModel
+@{
+    ViewData["Title"] = "Create Alert";
+}
+
+
+<form class="form-horizontal" method="post">
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+    <div><label class="text-danger">@Model.Message1</label></div>
+    <div class="form-group">
+        <label class="col-sm-2 col-form-label">Explain briefly here</label>
+        <input asp-for="HereAlert.Description" placeholder="Any problem you may type in..." />
+        <span asp-validation-for="HereAlert.Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @*<button onclick="@Model.Confirm()">Submit</button>*@
+        <input type="submit" id="create" value="Create" class="btn btn-primary" />
+    </div>
+    <input type="hidden" id="targetid" value="@Model.Target" />
+</form>
+
+
+
+
+@*<div id="alertModal" class="modal fade" role="alert">
+        <div class="modal-alert">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" id="create"
+        </div>
+    </div>*@
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

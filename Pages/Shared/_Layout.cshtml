@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Resurface</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/Shared/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/Shared/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/Shared/icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Shared/icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/Shared/icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/Shared/icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/Shared/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/Shared/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Shared/icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/Shared/icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Shared/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Shared/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Shared/icon/favicon-16x16.png">
+    <link rel="manifest" href="/Shared/icon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/Shared/icon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    @RenderSection("linkcss", required: false)
+    @RenderSection("metatags", required: false)
+</head>
+<body class="resurface-white">
+    <header>
+        @*For all users*@
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light resurface-orange">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index" style="font-size:large;">
+                    @*<img src="~/default/img/13g3f13f12f8.png" style="width: auto;"/>*@
+                    Resurface
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Search" title="Search is not implemented in this website yet. Sorry for this inconvenience!">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </a>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Upcoming">UPCOMING</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Discover">DISCOVER</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Events/Main">EVENTS</a>
+                        </li>
+
+                        @*<li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                    </svg>
+                </a>
+            </li>*@
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer resurface-orange">
+        <div class="container">
+            &copy; 2021 - enterprisedevproj - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

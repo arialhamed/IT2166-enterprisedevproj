@@ -1,0 +1,72 @@
+﻿@page "{id?}"
+@model enterprisedevproj.Pages.Delete.ConfirmedModel
+@{
+    switch (Model.DetailIndex[0].ToString().ToLower())
+    {
+        case "a":
+            ViewData["Title"] = "Alert deleted!";
+            break;
+        case "r":
+            ViewData["Title"] = "Review deleted!";
+            break;
+        case "e":
+            ViewData["Title"] = "Event deleted!";
+            break;
+        case "i":
+            ViewData["Title"] = "Interest deleted!";
+            break;
+        case "n":
+            ViewData["Title"] = "Needs deleted!";
+            break;
+        default:
+            ViewData["Title"] = "No ID detected.";
+            break;
+    }
+    @inject SignInManager<ApplicationUser> _signInManager
+    @inject UserManager<ApplicationUser> _userManager
+}
+@section metatags {
+    @if (_signInManager.IsSignedIn(User) && _userManager.GetUserName(User) == "admin@resurface.org.sg")
+    {
+        <meta http-equiv="refresh" content="3; URL=/IS/Main/@Model.RedirectValue" />
+        //<meta http-equiv="refresh" content="3; URL=window.close();" />
+    }
+    else
+    {
+        <meta http-equiv="refresh" content="3; URL=/">
+    }
+}
+
+@{
+    switch (Model.DetailIndex[0].ToString().ToLower())
+    {
+        case "a":
+            <h1>Alert successfully deleted!</h1>
+            <p>We will redirect you back in 3 seconds</p>
+            break;
+        case "u":
+            <h1>User successfully deleted!</h1>
+            <p>We will redirect you back to home page in 3 seconds</p>
+
+            break;
+        case "r":
+            <h1>Review successfully deleted!</h1>
+            <p>We will redirect you back to home page in 3 seconds</p>
+            break;
+        case "e":
+            <h1>Event successfully deleted!</h1>
+            <p>We will redirect you back in 3 seconds</p>
+            break;
+        case "i":
+            <h1>Interest successfully deleted!</h1>
+            <p>We will redirect you back in 3 seconds</p>
+            break;
+        case "n":
+            <h1>Needs successfully deleted!</h1>
+            <p>We will redirect you back in 3 seconds</p>
+            break;
+        default:
+            break;
+
+    }
+}

@@ -1,0 +1,27 @@
+﻿@page
+@model enterprisedevproj.Pages.Events.Staff.DeleteModel
+@{
+}
+
+<table class="center">
+    <tr>
+        <td>
+            <h2>Delete event?</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>A notification will be sent to the event manager and any <br />participants that may have signed up for it</p>
+        </td>
+    </tr>
+    <tr>
+        <td><a class="btn btn-secondary" asp-page="/Events/Staff/Main">Cancel</a></td>
+        <td><a class="btn btn-info" asp-page="/Events/Staff/Details" asp-route-id="@Model.HereEvent.Id">Details</a></td>
+        <td>
+            <form method="post">
+                <button class="btn btn-danger">Delete</button>
+                <input type="hidden" name="id" value="@Model.HereEvent.Id" />
+            </form>
+        </td>
+    </tr>
+</table>

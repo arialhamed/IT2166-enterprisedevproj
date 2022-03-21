@@ -1,0 +1,152 @@
+﻿@page
+@model enterprisedevproj.Pages.DiscoverModel
+@{
+}
+@{
+    @*ViewData["Title"] = "Discover";*@
+ViewData["Title"] = "Discover";
+}
+@section linkcss {
+    <link rel="stylesheet" href="~/css/siteDiscover.css" />
+}
+<div class="d-flex">
+    <h2>Discover new interests!</h2>
+    <a class="btn-block text-right" asp-page="/Create/Interest">
+        Is your's not here? Click here to add it to the catalog!
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+    </a>
+</div>
+@*<div class="row">
+    <div class="column">
+        <a asp-page="/Interest" asp-route-id="I730900"><img src="~/default/img/discover/wedding.jpg" title="Landscaping"></a>
+        <a><img src="~/default/img/discover/rocks.jpg"></a>
+        <a><img src="~/default/img/discover/falls2.jpg"></a>
+        <a><img src="~/default/img/discover/paris.jpg"></a>
+        <a><img src="~/default/img/discover/nature.jpg"></a>
+        <a><img src="~/default/img/discover/mist.jpg"></a>
+        <a><img src="~/default/img/discover/paris.jpg"></a>
+    </div>
+    <div class="column">
+        <a asp-page="/Interest" asp-route-id="I142312"><img src="~/default/img/discover/underwater.jpg" title="Origami"></a>
+        <a><img src="~/default/img/discover/ocean.jpg"></a>
+        <a asp-page="/Interest" asp-route-id="I963288"><img src="~/default/img/discover/wedding.jpg" title="[Instrument] Guitar"></a>
+        <a><img src="~/default/img/discover/mountainskies.jpg"></a>
+        <a><img src="~/default/img/discover/rocks.jpg"></a>
+        <a><img src="~/default/img/discover/underwater.jpg"></a>
+    </div>
+    <div class="column">
+        <a><img src="~/default/img/discover/wedding.jpg"></a>
+        <a><img src="~/default/img/discover/rocks.jpg"></a>
+        <a><img src="~/default/img/discover/falls2.jpg"></a>
+        <a><img src="~/default/img/discover/paris.jpg"></a>
+        <a><img src="~/default/img/discover/nature.jpg"></a>
+        <a><img src="~/default/img/discover/mist.jpg"></a>
+        <a><img src="~/default/img/discover/paris.jpg"></a>
+    </div>
+    <div class="column">
+        <a><img src="~/default/img/discover/underwater.jpg"></a>
+        <a><img src="~/default/img/discover/ocean.jpg"></a>
+        <a><img src="~/default/img/discover/wedding.jpg"></a>
+        <a><img src="~/default/img/discover/mountainskies.jpg"></a>
+        <a><img src="~/default/img/discover/rocks.jpg"></a>
+        <a><img src="~/default/img/discover/underwater.jpg"></a>
+    </div>
+</div>*@
+
+<div class="container">
+    <div class="row row-cols-3">
+        @foreach (var item in Model.AllInterests)
+        {
+        <div class="col-md-4 thumbnail">
+            <a asp-page="/Interest" asp-route-id="@item.Id">
+                @if (item.PosterURL == null)
+                {
+                <img class="img-fluid" src="~/default/img/discover/default-interest-poster.png" />
+                } else
+                {
+                <img class="img-fluid" src="@item.PosterURL" />
+                }
+                <div class="caption">
+                    <h4 class="text-center">@item.Name</h4>
+                </div>
+            </a>
+
+            @*<div class="thumbnail">
+                <a href="/w3images/lights.jpg">
+                    <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum...</p>
+                    </div>
+                </a>
+            </div>*@
+        </div>
+        }
+    </div>
+
+</div>
+
+    
+    @*
+    <div class="row" id="tableRow">
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+        <div class="column">
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+            <img src="~/default/img/discover/falls2.jpg" />
+        </div>
+    </div>*@
+@*<div class="row">
+    <div class="column" id="colon1">
+        @foreach (var item in ModelInterestList1)
+        {
+            <a asp-page="/Interest" asp-route-id=""
+               }
+        </div>
+        <div class="column" id="colon2"></div>
+        <div class="column" id="colon3"></div>
+    </div>*@

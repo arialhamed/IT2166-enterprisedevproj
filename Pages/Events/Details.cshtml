@@ -1,0 +1,33 @@
+﻿@page
+@model enterprisedevproj.Pages.Events.DetailsModel
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div>
+    <label class="col-sm-2 col-form-label">Name:</label>
+    <label>@Model.HereEvent.Name</label>
+</div>
+
+<div>
+    <label class="col-sm-2 col-form-label">Description:</label>
+    <label>@Model.HereEvent.Description</label>
+
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Start Time:</label>
+    <label>@Model.HereEvent.StartTime</label>
+</div>
+
+<div>
+    <label class="col-sm-2 col-form-label">End Time:</label>
+    <label>@Model.HereEvent.EndTime</label>
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Location:</label>
+    <label>@Model.HereEvent.Location</label>
+</div>
+<div class="col-sm-10">
+    <a class="btn btn-info" asp-page="/Events/Main">Back</a>
+    <a class="btn btn-success text-right" asp-page="/Events/Signup" asp-route-id="@Model.HereEvent.Id">Sign Up</a>
+</div>

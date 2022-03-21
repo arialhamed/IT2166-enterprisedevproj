@@ -1,0 +1,216 @@
+﻿@page "{id?}"
+@model enterprisedevproj.Pages.IS.DetailModel
+@{
+    ViewData["Title"] = "IT Staff: Detail page";
+}
+
+@{
+    if ("AREIN".Contains(Model.DetailIndex))
+    {
+        if (Model.DetailIndex == "A")
+        {
+            <h2>Alert details</h2>
+            <table class="table table-striped table-borderless table-hover mt-3">
+                <tbody>
+                    <tr>
+                        <th scope="row">Alert ID</th>
+                        <td>@Model.HereAlert.Id</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Target ID</th>
+                        <td>@Model.HereAlert.TargetId</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Alerter ID (User ID)</th>
+                        <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@Model.HereAlert.AlerterId">@Model.HereAlert.AlerterId</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date Modified</th>
+                        <td>@Model.HereAlert.AlertTime</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="3">Description: @Model.HereAlert.Description</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        else if (Model.DetailIndex == "R")
+        {
+            <h2>Review details</h2>
+            <table class="table table-striped table-borderless table-hover mt-3">
+                <tbody>
+                    <tr>
+                        <th scope="row">Review ID</th>
+                        <td>@Model.HereReview.Id</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Item ID</th>
+                        <td>@Model.HereReview.ItemId</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Reviewer ID</th>
+                        <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@Model.HereReview.ReviewerId">@Model.HereReview.ReviewerId</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Rating</th>
+                        <td>@Model.HereReview.Rating</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Helpfulness Rating</th>
+                        <td>@Model.HereReview.HelpfulRate</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Review Date</th>
+                        <td>@Model.HereReview.ReviewDate</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="3">Description: @Model.HereReview.Description</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        }
+        else if (Model.DetailIndex == "E")
+        {
+            <h2>Event details</h2>
+            <table class="table table-striped table-borderless table-hover mt-3">
+                <tbody>
+                    <tr>
+                        <th scope="row">Event ID</th>
+                        <td>@Model.HereEvent.Id</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Event Name</th>
+                        <td>@Model.HereEvent.Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Creator ID</th>
+                        <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@Model.HereEvent.CreatorId">@Model.HereEvent.CreatorId</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Start Time</th>
+                        <td>@Model.HereEvent.StartTime</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">End Time</th>
+                        <td>@Model.HereEvent.EndTime</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Location</th>
+                        <td>@Model.HereEvent.Location</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sponsors</th>
+                        <td>@Model.HereEvent.Sponsors</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="3">Description: @Model.HereEvent.Description</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        }
+        else if (Model.DetailIndex == "I")
+        {
+            <h2>Interest details</h2>
+            <table class="table table-striped table-borderless table-hover mt-3">
+                <tbody>
+                    <tr>
+                        <th scope="row">Interest ID</th>
+                        <td>@Model.HereInterest.Id</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Interest Name</th>
+                        <td>@Model.HereInterest.Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Rating</th>
+                        <td>@Model.HereInterest.Rating</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Likes</th>
+                        <td>@Model.HereInterest.Likes</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Views</th>
+                        <td>@Model.HereInterest.Views</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Creator ID</th>
+                        <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@Model.HereInterest.CreatorId">@Model.HereInterest.CreatorId</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date Modified</th>
+                        <td>@Model.HereInterest.DateModified</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Approved</th>
+                        <td>@Model.HereInterest.Approved</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="3">Description: @Model.HereInterest.Description</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        }
+        else if (Model.DetailIndex == "N")
+        {
+            <h2>Review details</h2>
+            <table class="table table-striped table-borderless table-hover mt-3">
+                <tbody>
+                    <tr>
+                        <th scope="row">Needs ID</th>
+                        <td>@Model.HereNeed.Id</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Beneficiary ID</th>
+                        <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@Model.HereNeed.BeneficiaryId">@Model.HereNeed.BeneficiaryId</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Assistant ID</th>
+                        <td><a target="_blank" asp-page="/IS/ViewUser" asp-route-id="@Model.HereNeed.AssistantId">@Model.HereNeed.AssistantId</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Beneficiary Medical History</th>
+                        <td>@Model.HereNeed.MedicalHistory</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Beneficiary Medications</th>
+                        <td>@Model.HereNeed.Medications</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Beneficiary Conditions</th>
+                        <td>@Model.HereNeed.Conditions</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Vegetarian (1 = true, 0 = false)</th>
+                        <td>@Model.HereNeed.Vegetarian</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Beneficiary Food Allergies</th>
+                        <td>@Model.HereNeed.FoodAllergies</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+        }
+    }
+    else
+    {
+
+        <div class="container resurface-white-alt mt-auto">
+            <h3>Detail page requires valid ID of items within databases (usually comes with the link above)</h3>
+        </div>
+    }
+    <a class="btn btn-secondary" asp-page="/IS/Main">Cancel</a>
+    <a class="btn btn-danger text-right" asp-page="/IS/Delete" asp-route-id="@Model.ID">Delete</a>
+    if (Model.DetailIndex == "A")
+    {
+        if (Model.HereAlert.TargetId[0] == 'I')
+        {
+            <a class="btn btn-info" asp-page="/Interest" asp-route-id="@Model.HereAlert.TargetId">View page</a>
+        }
+    }
+}

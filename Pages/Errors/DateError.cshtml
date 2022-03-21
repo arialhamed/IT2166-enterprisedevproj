@@ -1,0 +1,35 @@
+﻿@page
+@model enterprisedevproj.Pages.Errors.DateErrorModel
+@{
+    switch (Model.ConfirmIndex)
+    {
+        case "start":
+            ViewData["Title"] = "Error";
+            break;
+        case "end":
+            ViewData["Title"] = "Error";
+            break;
+        default:
+            ViewData["Title"] = "Error.";
+            break;
+    }
+}
+@section metatags {
+    <meta http-equiv="refresh" content="3; URL=/Create/Event">
+}
+@{
+    switch (Model.ConfirmIndex)
+    {
+        case "start":
+            <h3>Start Date cannot be set today, and earlier than today</h3>
+            <p>You will be redirected to the creation page in 3 seconds.</p>
+            break;
+        case "end":
+            <h3>End Date cannot be earlier than Start Date</h3>
+            <p>You will be redirect to the creation page in 3 seconds</p>
+            break;
+        default:
+            break;
+
+    }
+}
